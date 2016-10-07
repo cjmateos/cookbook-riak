@@ -1,0 +1,15 @@
+/opt/rb/bin/rb_check_upload_s3
+/opt/rb/bin/rb_external_s3
+/opt/rb/bin/rb_get_s3_users.sh
+/opt/rb/bin/rb_s3_domain
+/opt/rb/bin/rb_s3_policy
+/opt/rb/bin/rb_s3_user
+/opt/rb/bin/s3cmd
+/opt/rb/bin/s3curl.pl
+/opt/rb/etc/s3policies
+/opt/rb/etc/s3user.txt
+/opt/rb/etc/druid/jets3t.properties
+/opt/rb/etc/s3policies/all.example
+/opt/rb/etc/s3policies/sourceip.example
+/opt/rb/etc/s3policies/user.example
+/opt/rb/home/redBorder/.s3cfg
