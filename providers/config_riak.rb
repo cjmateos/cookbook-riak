@@ -49,13 +49,6 @@ action :config do
       action :install
     end
 
-    # disable and stop bookshelf - riak conflicts
-    #execute "stop_bookshelf" do
-    #  command "systemctl stop bookshelf && systemctl disable bookshelf"
-    #  ignore_failure true
-    #  action :run
-    #end
-
     service "riak" do
       service_name "riak"
       supports :status => true, :reload => true, :restart => true, :start => true, :enable => true
