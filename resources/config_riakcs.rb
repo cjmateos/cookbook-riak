@@ -19,3 +19,5 @@ attribute :stanchion_ip, :kind_of => String, :default => "127.0.0.1"
 attribute :stanchion_port, :kind_of => Fixnum, :default => 8085
 
 attribute :cdomain, :kind_of => String, :default => "redborder.cluster"
+
+attribute :s3user, :kind_of => String, :default => "/etc/redborder/s3user.json"

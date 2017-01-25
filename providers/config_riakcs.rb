@@ -33,8 +33,15 @@ action :config do
 
     cdomain = new_resource.cdomain
 
-    # Load keys from s3_secrets data bag
-    s3_secrets = Chef::DataBagItem.load("passwords", "s3_secrets") rescue s3_secrets = {}
+    s3user = new_resource.s3user
+
+    # Load keys from s3_secrets File
+    #s3_secrets = Chef::DataBagItem.load("passwords", "s3_secrets") rescue s3_secrets = {}
+    s3user_file = File.read('s3user') rescue s3user_file = nil
+    s3_secrets = JSON.parse(s3user_file) unless s3user_file.nil?
+
+    key_id = s3_secrets.nil? ? s3_secrets['key_id'] : "admin-key"
+    key_secret = s3_secrets.nil? ? s3_secrets['key_secret'] : "admin-secret"
 
     user user do
       group group
@@ -50,7 +57,7 @@ action :config do
       notifies :restart, "service[riak-cs]", :delayed
       variables(:riakcs_ip => riakcs_ip, :riakcs_port => riakcs_port, :riak_ip => riak_ip, \
         :riak_port => riak_port, :stanchion_ip => stanchion_ip, :stanchion_port => stanchion_port, \
-        :cdomain => cdomain, :key_id => s3_secrets["key_id"], :key_secret => s3_secrets["key_secret"])
+        :cdomain => cdomain, :key_id => key_id, :key_secret => s3_secrets.nil? ? s3_secrets['key_secret'] : "admin-secret")
     end
 
     service "riak-cs" do
